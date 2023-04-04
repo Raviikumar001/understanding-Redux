@@ -1,4 +1,4 @@
-When we are making our app, we want our state to be managed well
+When we are making our app, we want our state to be managed well,
 so what we can do to make our state more predictable is to have a
 central state.
 What we want to achieve is state predictabiliy when we are making our app
