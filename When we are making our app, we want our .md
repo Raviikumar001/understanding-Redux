@@ -19,3 +19,6 @@ Characteristics of Pure Function
 
 
 Reducer takes the state and reduces it to simple actions.
+
+It is a good practise to break down your actions into action creators.
+

@@ -38,6 +38,48 @@ function createStore(reducer)
  const TOGGLE_TODO = "TOGGLE_TODO";
  const ADD_GOAL = "ADD_GOAL";
 
+ function addTodoAction(todo)
+ {
+    return{
+      type: ADD_TODO,
+      todo
+    }
+ }
+
+ function removeTodoAction(id)
+ {
+
+  return{
+    type: REMOVE_TODO,
+    id,
+  }
+ }
+
+ function toggleTodoAction(id)
+ {
+  return {
+     type: TOGGLE_TODO,
+     id
+  }
+ }
+
+ function addGoalAction(goal)
+ {  
+
+  return {
+     type: ADD_GOAL,
+     goal
+  }
+
+ }
+
+ function removeGoalAction(id)
+ {
+    return {
+      type: REMOVE_GOAL,
+      id
+    }
+ }
 
 function todos(state = [], action)
 {
@@ -94,53 +136,41 @@ store.subscribe( ()=> {
   console.log( "The new state is :", store.getState());
 }) 
 
-store.dispatch({
-  type: ADD_TODO,
-  todo:{
-    id:0,
-    name: "walk the dog",
-    complete:false
-  }
-})
+store.dispatch(addTodoAction({
+  id:0,
+  name: "walk the dog",
+  complete:false
+}))
 
-
-store.dispatch(({
-  type: ADD_TODO,
-  todo: {
-    id: 1,
-    name: 'Make maggie',
-    complete: false
-  }
+store.dispatch(addTodoAction({
+  id: 1,
+  name: 'Make maggie',
+  complete: false
 }))
 
 
-store.dispatch({
-  type: REMOVE_TODO,
-  id:0
-})
 
-store.dispatch({
-  type: TOGGLE_TODO,
-  id:1
-})
 
-store.dispatch({
-  type: ADD_GOAL,
-  goal: {
-    id: 0,
-    name: "Learn Redux"
-  }
-})
+store.dispatch(removeTodoAction(1))
 
-store.dispatch({
-  type: ADD_GOAL,
-  goal: {
-    id: 1,
-    name: "Learn React"
-  }
-})
+store.dispatch(toggleTodoAction(0))
 
-store.dispatch({
-  type: REMOVE_GOAL,
-  id: 0
-})
+store.dispatch(addGoalAction( {
+  id: 0,
+  name: "Learn Redux"
+}
+))
+
+store.dispatch(addGoalAction( {
+  id: 1,
+  name: "Learn Dancing"
+}
+))
+
+store.dispatch(addGoalAction({
+  id: 1,
+  name: "Learn React"
+}))
+
+
+store.dispatch(removeGoalAction(0))
