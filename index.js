@@ -1,63 +1,4 @@
-// function todos(state = [], action) {
-
-//   switch(action.type)
-//   {
-//     case 'ADD_TODO':
-//       return state.concat([action.todo]);
-//     case 'REMOVE_TODO':
-//       return state.filter( (todo)=> todo.id !== action.id);
-//     case 'TOGGLE_TODO':
-//       return state.map((todo)=> todo.id !== action.id
-//       ?todo
-//       :Object.assign({},todo, {complete: !todo.complete}))
-//     default: 
-//       return state;
-//   }
-  
-
-
-
-// }
-
-// function createStore(reducer) {
-//   let state;
-//   let listeners = [];
-
-//   const getstate = () => {
-//     return state;
-//   };
-
-//   const subscribe = (listener) => {
-//     listeners.push(listener);
-
-//     return () => {
-//       listeners = listeners.filter((l) => l !== listener);
-//     };
-//   };
-//   const dispatch = (action) => {
-//     state = reducer(state, action);
-//     //call todos
-//     //loop over listeners and invoke them
-//     listeners.forEach((listener) => listener());
-//   };
-
-//   return {
-//     getstate,
-//     subscribe,
-//     dispatch,
-//   };
-// }
-
-// const store = createStore(todos);
-// store.dispatch({
-//   type: "ADD_TODO",
-//   todo: {
-//     id: 0,
-//     name: "Learn Redux",
-//     complete: false,
-//   },
-// });
-
+ 
 
 function todos(state = [], action)
 {
@@ -89,6 +30,15 @@ function goals(state = [], action)
       default:
         return state;
    }
+}
+
+function App(state = {}, action)
+{
+
+  return {
+    goals: goals(state.goals, action),
+    todos: todos(state.todos, action)
+  }
 }
 
 function createStore(reducer)
@@ -124,4 +74,61 @@ function createStore(reducer)
   }
 }
 
-const store = createStore(todos);
+const store = createStore(App);
+
+store.subscribe( ()=> {
+  console.log("The new state is: ", store.getState());
+})
+
+store.dispatch({
+  type: 'ADD_TODO',
+  todo: {
+    todo: {
+      id:0,
+      name : 'walk the dog',
+      complete: false
+    }
+  }
+});
+
+store.dispatch({
+  type: 'ADD_TODO',
+  todo: {
+    id: 1,
+    name: 'wash the car',
+    complete: false
+  }
+});
+
+
+store.dispatch({
+  type: 'REMOVE_TODO',
+  id:0
+})
+
+store.dispatch({
+  type: 'TOGGLE_TODO',
+  id:1
+})
+
+store.dispatch({
+  type: "ADD_GOAL",
+  goal: {
+    id: 0,
+    name: 'Learn Redux'
+  }
+})
+
+store.dispatch({
+  type: "ADD_GOAL",
+  goal: {
+    id: 1,
+    name: 'Lose 20 pounds'
+  }
+})
+
+store.dispatch({
+  type:"REMOVE_GOAL",
+  id:0
+})
+
