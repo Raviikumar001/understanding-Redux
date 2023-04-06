@@ -139,8 +139,42 @@ function App(state = {}, action)
 const store = createStore(App);
 
 store.subscribe( ()=> {
-  console.log( "The new state is :", store.getState());
+   const {goals, todos} = store.getState();
+  
+   document.getElementById('goals').innerHTML = "";
+   document.getElementById('todos').innerHTML = "";
+
+   todos.forEach(addTodoDom)
+   goals.forEach(addGoalToDom)
 }) 
+
+function addTodoDom(todo)
+{
+  const node = document.createElement("li");
+  const text = document.createTextNode(todo.name);
+  node.appendChild(text); 
+  node.style.textDecoration = todo.complete ? "line-through" : "none";
+  node.addEventListener("click", ()=> {
+    store.dispatch(toggleTodoAction(
+      todo.id
+    ));
+  })
+
+  document.getElementById('todos')
+    .appendChild(node);
+
+}
+
+function  addGoalToDom(goal)
+{
+  const node = document.createElement("li");
+  const text = document.createTextNode(goal.name);
+  node.appendChild(text);
+
+  document.getElementById('goals')
+    .appendChild(node);
+
+}
 
 // store.dispatch(addTodoAction({
 //   id:0,
@@ -179,7 +213,7 @@ store.subscribe( ()=> {
 // }))
 
 
-store.dispatch(removeGoalAction(0))
+// store.dispatch(removeGoalAction(0))
 
 
 //DOM CODE
