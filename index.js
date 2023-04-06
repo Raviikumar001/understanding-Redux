@@ -7,7 +7,7 @@ function createStore(reducer)
   const getState= ()=>{
     return state;
   }
-
+  
   const subscribe = (listener)=>{
 
     listeners.push(listener);
