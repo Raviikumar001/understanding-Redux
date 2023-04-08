@@ -148,6 +148,8 @@ store.subscribe( ()=> {
    goals.forEach(addGoalToDom)
 }) 
 
+
+// dom connectin to functions. 
 function addTodoDom(todo)
 {
   const node = document.createElement("li");
