@@ -150,11 +150,27 @@ store.subscribe( ()=> {
 
 
 // dom connectin to functions. 
+function createRemoveButton (onClick)
+{
+  const removebtn = document.createElement('button');
+  removebtn.innerHTML = 'X';
+  removebtn.addEventListener('click', onClick);
+  return   removebtn;
+}
+
+
+
+
 function addTodoDom(todo)
 {
   const node = document.createElement("li");
   const text = document.createTextNode(todo.name);
+  const removeBtn = createRemoveButton(()=> {
+    store.dispatch(removeTodoAction(todo.id))
+  })
   node.appendChild(text); 
+  node.appendChild(removeBtn);
+
   node.style.textDecoration = todo.complete ? "line-through" : "none";
   node.addEventListener("click", ()=> {
     store.dispatch(toggleTodoAction(
@@ -171,7 +187,12 @@ function  addGoalToDom(goal)
 {
   const node = document.createElement("li");
   const text = document.createTextNode(goal.name);
+
+  const removeBtn = createRemoveButton(()=>{
+    store.dispatch(removeGoalAction(goal.id));
+  })
   node.appendChild(text);
+  node.appendChild(removeBtn);
 
   document.getElementById('goals')
     .appendChild(node);
