@@ -22,3 +22,9 @@ Characteristics of Pure Function
 Reducer takes the state and reduces it to simple actions.
 
 It is a good practise to break down your actions into action creators.
+
+Action creators create different actions . They are obeject representation of different  events that
+can occur in your app.
+
+Once actions  are setup you need to setup reducers.
+Based of that actions we will update the state, or create a new state.
