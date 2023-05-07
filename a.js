@@ -12,6 +12,8 @@ function generateID()
  const TOGGLE_TODO = "TOGGLE_TODO";
  const ADD_GOAL = "ADD_GOAL";
 
+
+//actions functions
  function addTodoAction(todo)
  {
     return{
