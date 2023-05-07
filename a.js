@@ -5,7 +5,7 @@ function generateID()
 }
 
 
-
+// constants for particular actions
  const ADD_TODO= "ADD_TODO";
  const REMOVE_GOAL= "REMOVE_GOAL";
  const REMOVE_TODO = "REMOVE_TODO";
