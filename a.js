@@ -128,7 +128,7 @@ function goals(state = [], action)
 
 
 
-
+//store creation
 const store = Redux.createStore(Redux.combineReducers({
     todos,goals,
 }));
