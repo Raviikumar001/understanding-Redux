@@ -3,7 +3,7 @@ function generateID()
 {
    return Math.random().toString(36).substring(2) + (new Date().getTime().toString(36));
 }
-
+//this is a sample code
 
 // constants for particular actions
  const ADD_TODO= "ADD_TODO";
