@@ -144,7 +144,7 @@ store.subscribe( ()=> {
 }) 
 
 
-// dom connectin to functions. 
+// dom connection to functions. 
 function createRemoveButton (onClick)
 {
   const removebtn = document.createElement('button');
