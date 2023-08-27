@@ -78,7 +78,7 @@ function generateID()
     return store.dispatch(action);
  }
 
- //Reducer function
+ //Reducer function they contain the logic 
 
 function todos(state = [], action)
 {
